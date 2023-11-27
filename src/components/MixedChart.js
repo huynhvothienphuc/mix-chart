@@ -162,7 +162,9 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Line } from 'react-chartjs-2';
+import { Chart } from "react-chartjs-2";
+
+// import { Line } from 'react-chartjs-2';
 
 ChartJS.register(
   CategoryScale,
@@ -208,7 +210,7 @@ export const data = {
 };
 
 export function MixedChart() {
-  return <Line options={options} data={data} />;
+  return <Chart options={options} data={data} type="line"/>;
 }
 
 export default MixedChart;
