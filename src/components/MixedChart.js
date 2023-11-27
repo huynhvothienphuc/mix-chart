@@ -219,53 +219,6 @@ export function MixedChart() {
     top: 0,
     left: 0,
   });
-
-  useEffect(() => {
-    let datasets = [];
-    if (numberReviewChartData.solidChart) {
-      numberReviewChartData.solidChart.forEach((_, index) => {
-        datasets.push({
-          type: "line",
-          data: _.data,
-          label: _.label,
-          fill: false,
-          backgroundColor: SOLID_COLOR[index].color,
-          borderColor: SOLID_COLOR[index].color,
-          borderDash: [5, 5],
-          yAxisID: "y1",
-        });
-      });
-    }
-    if (numberReviewChartData.lineChart) {
-      numberReviewChartData.lineChart.forEach((_, index) => {
-        datasets.push({
-          type: "line",
-          data: _.data,
-          label: _.label,
-          borderColor: LINE_COLOR[index].color,
-          borderWidth: 2,
-          fill: false,
-          yAxisID: "y1",
-        });
-      });
-    }
-    if (numberReviewChartData.barChart) {
-      numberReviewChartData.barChart.forEach((_, index) => {
-        datasets.push({
-          type: "bar",
-          label: "Type 1",
-          data: _.data,
-          backgroundColor: barColors[index].color,
-        });
-      });
-    }
-    const chartData = {
-      labels: labels,
-      datasets: datasets,
-    };
-    setData(chartData);
-  }, []);
-
   const options = {
     scales: {
       y: {
@@ -312,8 +265,55 @@ export function MixedChart() {
       },
     },
   };
+  useEffect(() => {
+    let datasets = [];
+    if (numberReviewChartData.solidChart) {
+      numberReviewChartData.solidChart.forEach((_, index) => {
+        datasets.push({
+          type: "line",
+          data: _.data,
+          label: _.label,
+          fill: false,
+          backgroundColor: SOLID_COLOR[index].color,
+          borderColor: SOLID_COLOR[index].color,
+          borderDash: [5, 5],
+          yAxisID: "y1",
+        });
+      });
+    }
+    if (numberReviewChartData.lineChart) {
+      numberReviewChartData.lineChart.forEach((_, index) => {
+        datasets.push({
+          type: "line",
+          data: _.data,
+          label: _.label,
+          borderColor: LINE_COLOR[index].color,
+          borderWidth: 2,
+          fill: false,
+          yAxisID: "y1",
+        });
+      });
+    }
+    if (numberReviewChartData.barChart) {
+      numberReviewChartData.barChart.forEach((_, index) => {
+        datasets.push({
+          type: "bar",
+          label: "Type 1",
+          data: _.data,
+          backgroundColor: barColors[index].color,
+        });
+      });
+    }
+    const chartData = {
+      labels: labels,
+      datasets: datasets,
+    };
+    setData(chartData);
+  }, []);
 
-  return data !== null && <Chart type='bar' data={data} />;
+  
+
+  return data !== null && <Chart type='bar' data={data} options={options} />;
 }
 
 
