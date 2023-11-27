@@ -154,40 +154,29 @@
 import React from 'react';
 import {
   Chart as ChartJS,
-  CategoryScale,
   LinearScale,
+  CategoryScale,
+  BarElement,
   PointElement,
   LineElement,
-  Title,
-  Tooltip,
   Legend,
+  Tooltip,
+  LineController,
+  BarController,
 } from 'chart.js';
-import { Chart } from "react-chartjs-2";
-
-// import { Line } from 'react-chartjs-2';
+import { Chart } from 'react-chartjs-2';
 
 ChartJS.register(
-  CategoryScale,
   LinearScale,
+  CategoryScale,
+  BarElement,
   PointElement,
   LineElement,
-  Title,
+  Legend,
   Tooltip,
-  Legend
+  LineController,
+  BarController
 );
-
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top',
-    },
-    title: {
-      display: true,
-      text: 'Chart.js Line Chart',
-    },
-  },
-};
 
 const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
@@ -195,22 +184,33 @@ export const data = {
   labels,
   datasets: [
     {
+      type: 'line' ,
       label: 'Dataset 1',
-      data: [2, 6, 8, 1, 4, 2,5],
       borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      borderWidth: 2,
+      fill: false,
+      data: [2, 6, 8, 1, 4, 2,12],
     },
     {
+      type: 'bar' ,
       label: 'Dataset 2',
-      data: [4, 12, 8, 10, 14, 2,5],
-      borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
+      backgroundColor: 'rgb(75, 192, 192)',
+      data: [22, 16, 18, 10, 4, 2,12],
+      borderColor: 'white',
+      borderWidth: 2,
+    },
+    {
+      type: 'bar',
+      label: 'Dataset 3',
+      backgroundColor: 'rgb(53, 162, 235)',
+      data: [21, 36, 28, 11, 22, 12,18],
     },
   ],
 };
 
 export function MixedChart() {
-  return <Chart options={options} data={data} type="line"/>;
+  return <Chart type='bar' data={data} />;
 }
+
 
 export default MixedChart;
