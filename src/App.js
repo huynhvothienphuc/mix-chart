@@ -7,7 +7,6 @@ function App() {
     <div className="App">
 
      <MixedChart 
-      labels={["Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]}
      />
     </div>
   );
